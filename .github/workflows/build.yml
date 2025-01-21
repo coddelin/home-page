@@ -55,6 +55,8 @@ jobs:
           
       - name: Deploy GitHub Pages site
         uses: actions/deploy-pages@v4.0.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
           # GitHub token
           token:  ${{ github.token }}
