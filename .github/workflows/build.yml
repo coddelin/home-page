@@ -52,7 +52,12 @@ jobs:
           name: github-pages
           # Path of the directory containing the static assets.
           path: dist
-          
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
       - name: Deploy GitHub Pages site
         uses: actions/deploy-pages@v4.0.5
         env:
