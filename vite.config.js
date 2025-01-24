@@ -48,7 +48,7 @@ export default ({ mode }) =>
           short_name: loadEnv(mode, process.cwd()).VITE_SITE_NAME,
           description: loadEnv(mode, process.cwd()).VITE_SITE_DES,
           display: "standalone",
-          start_url: "/",
+          start_url: "/home-page/",
           theme_color: "#424242",
           background_color: "#424242",
           icons: [
