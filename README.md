@@ -57,13 +57,16 @@
 ```bash
 # 安装 pnpm
 npm install -g pnpm
-
+```
+```bash
 # 安装依赖
 pnpm install
-
+```
+```bash
 # 预览
 pnpm dev
-
+```
+```bash
 # 构建
 pnpm build
 ```
@@ -77,6 +80,8 @@ pnpm build
 ```bash
 # 构建
 docker build -t home .
+```
+```bash
 # 运行
 docker run -p 12445:12445 -d home
 ```
