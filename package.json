@@ -2,7 +2,7 @@
   "name": "home",
   "author": "linjonh",
   "github": "https://github.com/linjonh",
-  "home": "https://linjonh.github.io",
+  "home": "https://home.codelin.vip",
   "private": true,
   "version": "4.1.4",
   "type": "module",
@@ -40,6 +40,7 @@
     "unplugin-vue-components": "^0.22.12",
     "vite": "^4.5.3",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-pwa": "^0.14.7"
+    "vite-plugin-pwa": "^0.14.7",
+    "vite-plugin-radar": "^0.10.0"
   }
 }

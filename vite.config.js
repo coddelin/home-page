@@ -7,11 +7,11 @@ import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import viteCompression from "vite-plugin-compression";
-
+import { VitePluginRadar } from "vite-plugin-radar";
 // https://vitejs.dev/config/
 export default ({ mode }) =>
   defineConfig({
-    base:"/home-page/",
+    base:"/",
     plugins: [
       vue(),
       AutoImport({
@@ -48,7 +48,7 @@ export default ({ mode }) =>
           short_name: loadEnv(mode, process.cwd()).VITE_SITE_NAME,
           description: loadEnv(mode, process.cwd()).VITE_SITE_DES,
           display: "standalone",
-          start_url: "/home-page/",
+          start_url: "/",
           theme_color: "#424242",
           background_color: "#424242",
           icons: [
@@ -91,6 +91,14 @@ export default ({ mode }) =>
         },
       }),
       viteCompression(),
+       VitePluginRadar({
+        enableDev: true, // 开发环境下也启用脚本注入，默认为fal
+
+        // Google Analytics tag injection
+        analytics: {
+          id: 'G-BMKGZZ98NQ',
+        },
+      })
     ],
     server: {
       port: "3000",
