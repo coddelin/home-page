@@ -28,6 +28,8 @@ import { mainStore } from "@/store";
 import { Error } from "@icon-park/vue-next";
 
 const store = mainStore();
+console.log("store:")
+console.log(store)
 const bgUrl = ref(null);
 const imgTimeout = ref(null);
 const emit = defineEmits(["loadComplete"]);
@@ -39,7 +41,8 @@ const bgRandom = Math.floor(Math.random() * 10 + 1);
 // 更换壁纸链接
 const changeBg = (type) => {
   if (type == 0) {
-    bgUrl.value = `./images/background${bgRandom}.jpg`;
+    // bgUrl.value = `./images/background${bgRandom}.jpg`;
+    bgUrl.value = `https://bing.ee123.net/img/rand?i=${bgRandom}`;
   } else if (type == 1) {
     bgUrl.value = "https://api.dujin.org/bing/1920.php";
   } else if (type == 2) {
