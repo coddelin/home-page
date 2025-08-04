@@ -1,8 +1,8 @@
 [
   {
-    "icon": "Blog",
-    "name": "博客",
-    "link": "https://blog.codelin.vip"
+    "icon": "Fire",
+    "name": "今日热榜",
+    "link": "https://hot.imsyy.top/"
   },
   {
     "icon": "Video",
@@ -10,24 +10,59 @@
     "link": "https://v.codelin.vip/"
   },
   {
-    "icon": "CompactDisc",
-    "name": "音乐",
-    "link": "https://music.imsyy.top/"
-  },
-  {
-    "icon": "Compass",
-    "name": "起始页",
-    "link": "https://github.com/linjonh/"
+    "icon": "Video",
+    "name": "短视频解析下载",
+    "link": "https://vidl.web.app/"
   },
   {
     "icon": "Book",
-    "name": "掘金小册",
+    "name": "FFmpeg",
+    "link": "https://ffmpeg-doc.web.app"
+  },
+  {
+    "icon": "Book",
+    "name": "Pytorch学习手册",
     "link": "https://codelin.vip/"
   },
   {
-    "icon": "Fire",
-    "name": "今日热榜",
-    "link": "https://hot.imsyy.top/"
+    "icon": "Book",
+    "name": "js的V8引擎",
+    "link": "https://v8-script-engine.vercel.app/"
+  },
+  {
+    "icon": "Book",
+    "name": "js的rhino引擎",
+    "link": "https://rhino-doc.web.app/"
+  },
+  {
+    "icon": "Book",
+    "name": "AI聊天openwebui",
+    "link": "https://openwebui-three.vercel.app/"
+  },
+  {
+    "icon": "Book",
+    "name": "Immich-doc自托管相册备份项目",
+    "link": "https://immich-doc.web.app/"
+  },
+  {
+    "icon": "Book",
+    "name": "github项目搜索",
+    "link": "https://search.codelin.vip/"
+  },
+  {
+    "icon": "Blog",
+    "name": "大众博客",
+    "link": "https://blog.codelin.vip"
+  },
+  {
+    "icon": "Blog",
+    "name": "个人博客",
+    "link": "https://deepseeksblog.web.app"
+  },
+  {
+    "icon": "Blog",
+    "name": "AI-Taichi博客",
+    "link": "https://ai-taichi.web.app"
   },
   {
     "icon": "LaptopCode",
