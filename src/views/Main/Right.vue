@@ -1,9 +1,28 @@
 <template>
-  <div :class="store.mobileOpenState ? 'right' : 'right hidden'">
-    <!-- 移动端 Logo -->
-    <div class="logo text-hidden" @click="store.mobileFuncState = !store.mobileFuncState">
-      <span class="bg">{{ siteUrl[0] }}</span>
-      <span class="sm">.{{ siteUrl[1] }}</span>
+  <div :class="!store.mobileOpenState ? 'right' : 'right hidden'">
+    <div class="flex flex-col">
+      <!-- 移动端 Logo -->
+      <div class="logo">
+        <span :class="index == 0 ? 'bg' : 'sm'" v-for="(value, index) in siteUrl" :key="value">
+          {{ index != 0 ? '.' : '' }}{{ value }}
+        </span>
+      </div>
+      <!-- 简介 -->
+      <div :class="`${!store.mobileOpenState ? 'text-center w-full flex justify-center mt-0 mb-4 cards p-10' : 'hidden'} description`" @click="changeBox">
+        <div class="content">
+          <Icon size="16">
+            <QuoteLeft />
+          </Icon>
+          <Transition name="fade" mode="out-in">
+            <div :key="descriptionText.hello + descriptionText.text" class="text">
+              <p>{{ descriptionText.text }}</p>
+            </div>
+          </Transition>
+          <Icon size="16">
+            <QuoteRight />
+          </Icon>
+        </div>
+      </div>
     </div>
     <!-- 功能区 -->
     <Func />
@@ -29,13 +48,36 @@ const siteUrl = computed(() => {
   }
   return url.split(".");
 });
+
+// 简介区域文字
+const descriptionText = reactive({
+  hello: import.meta.env.VITE_DESC_HELLO,
+  text: import.meta.env.VITE_DESC_TEXT,
+});
+
+// 切换右侧功能区
+const changeBox = () => {
+  if (store.getInnerWidth >= 721) {
+    store.boxOpenState = !store.boxOpenState;
+  } else {
+    ElMessage({
+      message: "当前页面宽度不足以开启盒子",
+      grouping: true,
+      icon: h(Error, {
+        theme: "filled",
+        fill: "#efefef",
+      }),
+    });
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .right {
   // flex: 1 0 0%;
-  width: 50%;
+  width: 100%;
   margin-left: 0.75rem;
+
   .logo {
     width: 100%;
     font-family: "Pacifico-Regular";
@@ -46,26 +88,30 @@ const siteUrl = computed(() => {
     text-align: center;
     transition: transform 0.3s;
     animation: fade 0.5s;
+
     &:active {
       transform: scale(0.95);
     }
-    @media (min-width: 721px) {
-      display: none;
-    }
+
+    // @media (min-width: 721px) {
+    //   display: none;
+    // }
     @media (max-height: 720px) {
       width: calc(100% + 6px);
       top: 43.26px; // 721px * 0.06
     }
+
     @media (max-width: 390px) {
-        width: 391px;
+      width: 391px;
     }
   }
-  @media (max-width: 720px) {
-    margin-left: 0;
-    width: 100%;
-    &.hidden {
-      display: none;
-    }
-  }
+
+  // @media (max-width: 720px) {
+  //   margin-left: 0;
+  //   width: 100%;
+  //   &.hidden {
+  //     display: none;
+  //   }
+  // }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="setting">
-    <el-collapse class="collapse" v-model="activeName" accordion>
+  <div class="app-setting">
+    <el-collapse class="setting-collapse" v-model="activeName" accordion>
       <el-collapse-item title="个性壁纸" name="1">
         <div class="bg-set">
           <el-radio-group v-model="coverType" text-color="#ffffff" @change="radioChange">
@@ -119,8 +119,8 @@ const radioChange = () => {
 </script>
 
 <style lang="scss" scoped>
-.setting {
-  .collapse {
+.app-setting {
+  .setting-collapse {
     border-radius: 8px;
     --el-collapse-content-bg-color: #ffffff10;
     border-color: transparent;

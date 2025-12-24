@@ -1,20 +1,14 @@
 <template>
-  <div class="set" @mouseenter="closeShow = true" @mouseleave="closeShow = false" @click.stop>
+  <div class="set cards" @mouseenter="closeShow = true" @mouseleave="closeShow = false" @click.stop>
     <transition name="el-fade-in-linear">
-      <close-one
-        class="close"
-        theme="filled"
-        size="28"
-        fill="#ffffff60"
-        v-show="closeShow"
-        @click="store.setOpenState = false"
-      />
+      <close-one class="close" theme="filled" size="28" fill="#ffffff60" v-show="closeShow" @click="store.setOpenState = false" />
     </transition>
     <el-row :gutter="40">
       <el-col :span="12" class="left">
         <div class="logo text-hidden">
-          <span class="bg">{{ siteUrl[0] }}</span>
-          <span class="sm">.{{ siteUrl[1] }}</span>
+          <span :class="index == 0 ? 'bg' : 'sm'" v-for="(value, index) in siteUrl" :key="value">
+            {{ index != 0 ? '.' : '' }}{{ value }}
+          </span>
         </div>
         <div class="version">
           <div class="num">v&nbsp;{{ config.version }}</div>
@@ -98,7 +92,7 @@ const jumpTo = (url) => {
   transform: translate(-50%, -50%);
   width: 80%;
   height: 80%;
-  background: rgb(255 255 255 / 40%);
+  // background: rgb(255 255 255 / 40%);
   border-radius: 6px;
   padding: 40px;
 
@@ -137,6 +131,7 @@ const jumpTo = (url) => {
         width: 100%;
         height: 260px;
         min-height: 140px;
+
         .bg {
           font-size: 5rem;
         }
@@ -150,14 +145,17 @@ const jumpTo = (url) => {
           .bg {
             font-size: 4.5rem;
           }
+
           .sm {
             font-size: 1.7rem;
           }
         }
+
         @media (max-width: 825px) {
           .bg {
             font-size: 3.8rem;
           }
+
           .sm {
             font-size: 1.3rem;
           }

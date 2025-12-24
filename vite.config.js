@@ -8,11 +8,13 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import viteCompression from "vite-plugin-compression";
 import { VitePluginRadar } from "vite-plugin-radar";
+import tailwindcss from '@tailwindcss/vite'
 // https://vitejs.dev/config/
 export default ({ mode }) =>
   defineConfig({
     base:"/",
     plugins: [
+      tailwindcss(),
       vue(),
       AutoImport({
         imports: ["vue"],

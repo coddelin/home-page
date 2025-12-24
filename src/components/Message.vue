@@ -1,23 +1,23 @@
 <template>
   <!-- 基本信息 -->
-  <div class="message">
+  <div class="message max-sm:flex max-sm:flex-col max-sm:items-center">
     <!-- Logo -->
-    <div class="logo">
+    <div :class="store.mobileOpenState ? 'logo' : 'hidden'">
       <img class="logo-img" :src="siteLogo" alt="logo" />
       <div :class="{ name: true, 'text-hidden': true, long: siteUrl[0].length >= 6 }">
         <span class="bg">{{ siteUrl[0] }}</span>
         <span class="sm">.{{ siteUrl[1] }}</span>
+        <span class="sm">.{{ siteUrl[2] }}</span>
       </div>
     </div>
     <!-- 简介 -->
-    <div class="description cards" @click="changeBox">
+    <div :class="`${store.mobileOpenState ? 'logo' : 'hidden'} description`" @click="changeBox">
       <div class="content">
         <Icon size="16">
           <QuoteLeft />
         </Icon>
         <Transition name="fade" mode="out-in">
           <div :key="descriptionText.hello + descriptionText.text" class="text">
-            <p>{{ descriptionText.hello }}</p>
             <p>{{ descriptionText.text }}</p>
           </div>
         </Transition>
@@ -26,6 +26,7 @@
         </Icon>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -34,6 +35,7 @@ import { Icon } from "@vicons/utils";
 import { QuoteLeft, QuoteRight } from "@vicons/fa";
 import { Error } from "@icon-park/vue-next";
 import { mainStore } from "@/store";
+
 const store = mainStore();
 
 // 主页站点logo
@@ -89,21 +91,33 @@ watch(
 
 <style lang="scss" scoped>
 .message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .hidden {
+    display: none;
+  }
+
   .logo {
+
+    margin-right: 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     animation: fade 0.5s;
-    max-width: 460px;
+
     .logo-img {
       border-radius: 50%;
-      width: 120px;
+      width: 80px;
     }
+
     .name {
       width: 100%;
       padding-left: 22px;
       transform: translateY(-8px);
       font-family: "Pacifico-Regular";
+      margin-right: 10px;
 
       .bg {
         font-size: 5rem;
@@ -112,17 +126,21 @@ watch(
       .sm {
         margin-left: 6px;
         font-size: 2rem;
+
         @media (min-width: 721px) and (max-width: 789px) {
           display: none;
         }
       }
     }
+
     @media (max-width: 768px) {
       .logo-img {
         width: 100px;
       }
+
       .name {
         height: 128px;
+
         .bg {
           font-size: 4.5rem;
         }
@@ -136,9 +154,9 @@ watch(
 
   .description {
     padding: 1rem;
-    margin-top: 3.5rem;
     max-width: 460px;
     animation: fade 0.5s;
+    width: 100%;
 
     .content {
       display: flex;
@@ -161,33 +179,11 @@ watch(
         align-self: flex-end;
       }
     }
+
     @media (max-width: 720px) {
       max-width: 100%;
       pointer-events: none;
     }
   }
-  // @media (max-width: 390px) {
-  //   .logo {
-  //     flex-direction: column;
-  //     .logo-img {
-  //       display: none;
-  //     }
-  //     .name {
-  //       margin-left: 0;
-  //       height: auto;
-  //       transform: none;
-  //       text-align: center;
-  //       .bg {
-  //         font-size: 3.5rem;
-  //       }
-  //       .sm {
-  //         font-size: 1.4rem;
-  //       }
-  //     }
-  //   }
-  //   .description {
-  //     margin-top: 2.5rem;
-  //   }
-  // }
 }
 </style>

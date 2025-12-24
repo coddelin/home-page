@@ -41,9 +41,10 @@ const closeShow = ref(false);
 <style lang="scss" scoped>
 .box {
   flex: 1 0 0%;
-  margin-left: 0.75rem;
-  height: 80%;
-  max-width: 50%;
+  // margin-left: 0.75rem;
+  width: 100%;
+  height: 100%;
+  // max-width: 50%;
   position: relative;
   animation: fade 0.5s;
 

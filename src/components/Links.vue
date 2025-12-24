@@ -1,42 +1,20 @@
 <template>
-  <div v-if="siteLinks[0]" class="links">
+  <div v-if="siteLinks[0]" class="links overflow-auto">
     <div class="line">
       <Icon size="20">
         <Link />
       </Icon>
       <span class="title">网站列表</span>
     </div>
-    <!-- 网站列表 -->
-    <Swiper
-      v-if="siteLinks[0]"
-      :modules="[Pagination, Mousewheel]"
-      :slides-per-view="1"
-      :space-between="40"
-      :pagination="{
-        el: '.swiper-pagination',
-        clickable: true,
-        bulletElement: 'div',
-      }"
-      :mousewheel="true"
-    >
-      <SwiperSlide v-for="site in siteLinksList" :key="site">
-        <el-row class="link-all" :gutter="20">
-          <el-col v-for="(item, index) in site" :span="8" :key="item">
-            <div
-              class="item cards"
-              :style="index < 3 ? 'margin-bottom: 20px' : null"
-              @click="jumpLink(item)"
-            >
-              <Icon size="26">
-                <component :is="siteIcon[item.icon]" />
-              </Icon>
-              <span class="name text-hidden">{{ item.name }}</span>
-            </div>
-          </el-col>
-        </el-row>
-      </SwiperSlide>
-      <div class="swiper-pagination" />
-    </Swiper>
+    <!--  网站列表 -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 md:grid-cols-3 gap-5 link-all overflow-auto mb-30">
+      <div class="item cards" v-for="(item, index) in siteLinks" :key="index" @click="jumpLink(item)">
+        <Icon size="26">
+          <component :is="siteIcon[item.icon]" />
+        </Icon>
+        <span class="name text-hidden">{{ item.name }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -45,21 +23,10 @@ import { Icon } from "@vicons/utils";
 // 可前往 https://www.xicons.org 自行挑选并在此处引入
 import { Link, Blog, CompactDisc, Video, Compass, Book, Fire, LaptopCode } from "@vicons/fa"; // 注意使用正确的类别
 import { mainStore } from "@/store";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination, Mousewheel } from "swiper/modules";
 import siteLinks from "@/assets/siteLinks.json";
 
 const store = mainStore();
 
-// 计算网站链接
-const siteLinksList = computed(() => {
-  const result = [];
-  for (let i = 0; i < siteLinks.length; i += 6) {
-    const subArr = siteLinks.slice(i, i + 6);
-    result.push(subArr);
-  }
-  return result;
-});
 
 // 网站链接图标
 const siteIcon = {
@@ -94,26 +61,31 @@ onMounted(() => {
     display: flex;
     align-items: center;
     animation: fade 0.5s;
+
     .title {
       margin-left: 8px;
       font-size: 1.15rem;
       text-shadow: 0 0 5px #00000050;
     }
   }
+
   .swiper {
     left: -10px;
     width: calc(100% + 20px);
     padding: 5px 10px 0;
     z-index: 0;
+
     .swiper-slide {
       height: 100%;
     }
+
     .swiper-pagination {
       margin-top: 12px;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
+
       :deep(.swiper-pagination-bullet) {
         background-color: #fff;
         width: 20px;
@@ -122,17 +94,21 @@ onMounted(() => {
         border-radius: 4px;
         opacity: 0.2;
         transition: opacity 0.3s;
+
         &.swiper-pagination-bullet-active {
           opacity: 1;
         }
+
         &:hover {
           opacity: 1;
         }
       }
     }
   }
+
   .link-all {
-    height: 220px;
+    height: 520px;
+
     .item {
       height: 100px;
       width: 100%;
@@ -157,16 +133,20 @@ onMounted(() => {
         font-size: 1.1rem;
         margin-left: 8px;
       }
+
       @media (min-width: 720px) and (max-width: 820px) {
         .name {
           display: none;
         }
       }
+
       @media (max-width: 720px) {
         height: 80px;
       }
+
       @media (max-width: 460px) {
         flex-direction: column;
+
         .name {
           font-size: 1rem;
           margin-left: 0;
@@ -174,8 +154,9 @@ onMounted(() => {
         }
       }
     }
+
     @media (max-width: 720px) {
-      height: 180px;
+      height: 520;
     }
   }
 }
