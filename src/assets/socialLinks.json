@@ -1,4 +1,11 @@
-[
+{
+  "socialLinks": [
+  {
+    "name": "miniapp",
+    "icon": "./images/icon/ic_minapp.svg",
+    "tip": "星海飞驰壁纸",
+    "url": "https://github.com/linjonh"
+  },
   {
     "name": "Github",
     "icon": "./images/icon/github.png",
@@ -12,3 +19,4 @@
     "url": "mailto:gem.lucky@qq.com"
   }
 ]
+}

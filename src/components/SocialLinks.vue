@@ -4,8 +4,8 @@
     <div class="social">
       <span class="tip">{{ socialTip }}</span>
       <div class="link">
-        <a v-for="item in socialLinks" :key="item.name" :href="item.url" target="_blank" @mouseenter="socialTip = item.tip" @mouseleave="socialTip = '通过这里联系我吧'">
-          <img class="icon" :src="item.icon" height="24" />
+        <a v-for="item in socialLinks.socialLinks" :key="item.name" :href="item.url" target="_blank" @mouseenter="socialTip = item.tip" @mouseleave="socialTip = '通过这里联系我吧'">
+          <img class="icon " :src="item.icon" height="24" />
         </a>
       </div>
     </div>
@@ -31,7 +31,7 @@ const socialTip = ref("通过这里联系我吧");
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 300px;
+  max-width: 360px;
   padding: 10px;
   width: 100%;
   height: 42px;

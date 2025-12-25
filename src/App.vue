@@ -12,9 +12,10 @@
     </div>
     <div class="flex justify-center" v-show="!store.backgroundShow">
       <section class="flex justify-center" v-show="!store.setOpenState">
-        <div class="flex justify-center mt-30">
+        <div class="flex justify-center mt-30" v-show="!store.isShowQrcode">
           <MainRight v-show="!store.boxOpenState" />
         </div>
+        <MiniApp v-show="store.isShowQrcode" />
         <Box v-show="store.boxOpenState" />
       </section>
       <section class="more" v-show="store.setOpenState" @click="store.setOpenState = false">
@@ -44,6 +45,7 @@ import Background from "@/components/Background.vue";
 import Footer from "@/components/Footer.vue";
 import Box from "@/views/Box/index.vue";
 import MoreSet from "@/views/MoreSet/index.vue";
+import MiniApp from "@/views/MiniApp.vue";
 import cursorInit from "@/utils/cursor.js";
 import config from "@/../package.json";
 
