@@ -9,8 +9,8 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <LiquidWeb :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }">
-          <div class="right">
+        <LiquidWeb :options="GlassOptions">
+          <div class="right rounded-3xl border border-amber-100 hover:border-amber-100/40 transition-all duration-300">
             <div class="time">
               <div class="date">
                 <span>{{ currentTime.year }}&nbsp;年&nbsp;</span>

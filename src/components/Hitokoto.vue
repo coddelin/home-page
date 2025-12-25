@@ -1,10 +1,10 @@
 <template>
   <LiquidWeb
     v-show="!store.musicOpenState"
-    :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }"
+    :options="GlassOptions"
   >
     <div
-      class="hitokoto"
+      class="hitokoto rounded-3xl border border-amber-100 hover:border-amber-100/40 transition-all duration-300 size-full"
       @mouseenter="openMusicShow = true"
       @mouseleave="openMusicShow = false"
       @click.stop

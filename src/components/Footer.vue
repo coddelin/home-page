@@ -1,7 +1,7 @@
 <template>
-  <LiquidWeb v-if="store.footerBlur" :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }" selector="footer" :attributes="{ id: 'footer', class: '' }">
+  <LiquidWeb v-if="store.footerBlur" :options="GlassOptions" selector="footer" :attributes="{ id: 'footer', class: '' }">
     <Transition name="fade" mode="out-in">
-      <div v-if="!store.playerState || !store.playerLrcShow" class="power">
+      <div v-if="!store.playerState || !store.playerLrcShow" class="power border-t border-amber-100">
         <span>
           <span :class="startYear < fullYear ? 'c-hidden' : 'hidden'">Copyright&nbsp;</span>
           &copy;
@@ -110,7 +110,7 @@ const siteUrl = computed(() => {
 <style lang="scss" scoped>
 #footer {
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   height: 46px;

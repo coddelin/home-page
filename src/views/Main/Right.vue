@@ -8,11 +8,8 @@
         </span>
       </div>
       <!-- 简介 -->
-      <LiquidWeb
-        v-if="!store.mobileOpenState"
-        :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }"
-      >
-        <div class="text-center w-full flex justify-center mt-0 mb-4 p-10 description" @click="changeBox">
+      <LiquidWeb v-if="!store.mobileOpenState" :options="GlassOptions">
+        <div class="text-center w-full flex justify-center mt-0 mb-4 p-10 description rounded-3xl border border-amber-100 hover:border-amber-100/40 transition-all duration-300" @click="changeBox">
           <div class="content">
             <Icon size="16">
               <QuoteLeft />
@@ -41,6 +38,7 @@ import { mainStore } from "@/store";
 import Func from "@/views/Func/index.vue";
 import Link from "@/components/Links.vue";
 import { LiquidWeb } from "liquid-web/vue";
+import { GlassOptions } from "@/utils/constant.js";
 const store = mainStore();
 
 // 站点链接

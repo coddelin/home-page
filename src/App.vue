@@ -4,34 +4,36 @@
   <!-- 壁纸 -->
   <Background @loadComplete="loadComplete" />
   <!-- 主界面 -->
-  <!-- <Transition name="fade" mode="out-in"> -->
-  <main id="main" v-if="store.imgLoadStatus">
-    <SocialLinks />
-    <div class="flex justify-center">
-      <MainLeft />
-    </div>
-    <div class="flex justify-center" v-show="!store.backgroundShow">
-      <section class="flex justify-center" v-show="!store.setOpenState">
-        <div class="flex justify-center mt-30" v-show="!store.isShowQrcode">
-          <MainRight v-show="!store.boxOpenState" />
+  <Transition name="fade" mode="out-in">
+    <div v-if="store.imgLoadStatus">
+      <main id="main">
+        <SocialLinks />
+        <div class="flex justify-center">
+          <MainLeft />
         </div>
-        <MiniApp v-show="store.isShowQrcode" />
-        <Box v-show="store.boxOpenState" />
-      </section>
-      <section class="more" v-show="store.setOpenState" @click="store.setOpenState = false">
-        <MoreSet />
-      </section>
-    </div>
-    <!-- 移动端菜单按钮 
+        <div class="flex justify-center" v-show="!store.backgroundShow">
+          <section class="flex justify-center" v-show="!store.setOpenState">
+            <div class="flex justify-center mt-30" v-show="!store.isShowQrcode">
+              <MainRight v-show="!store.boxOpenState" />
+            </div>
+            <MiniApp v-show="store.isShowQrcode" />
+            <Box v-show="store.boxOpenState" />
+          </section>
+          <section class="more" v-show="store.setOpenState" @click="store.setOpenState = false">
+            <MoreSet />
+          </section>
+        </div>
+        <!-- 移动端菜单按钮
     <Icon class="menu" size="24" v-show="!store.backgroundShow" @click="store.mobileOpenState = !store.mobileOpenState">
       <component :is="store.mobileOpenState ? CloseSmall : HamburgerButton" />
     </Icon>-->
-    <!-- 页脚 -->
-    <Transition name="fade" mode="out-in">
-      <Footer class="f-ter" v-show="!store.backgroundShow && !store.setOpenState" />
-    </Transition>
-  </main>
-  <!-- </Transition>-->
+      </main>
+      <!-- 页脚 -->
+      <Transition name="fade" mode="out-in">
+        <Footer class="f-ter" v-if="store.imgLoadStatus" v-show="!store.backgroundShow && !store.setOpenState" />
+      </Transition>
+    </div>
+  </Transition>
 </template>
 
 <script setup>
@@ -126,6 +128,8 @@ onBeforeUnmount(() => {
   position: absolute;
   top: 0;
   left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
   transform: scale(1.2);

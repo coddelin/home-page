@@ -1,6 +1,6 @@
 <template>
-  <LiquidWeb :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }">
-    <div class="box" @mouseenter="closeShow = true" @mouseleave="closeShow = false">
+  <LiquidWeb :options="GlassOptions">
+    <div class="box rounded-3xl border border-amber-100" @mouseenter="closeShow = true" @mouseleave="closeShow = false">
       <transition name="el-fade-in-linear">
         <CloseOne
           class="close"

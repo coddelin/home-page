@@ -1,8 +1,8 @@
 <template>
   <!-- 社交链接 -->
   <div class="top_right">
-    <LiquidWeb :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }">
-      <div class="social">
+    <LiquidWeb :options="GlassOptions">
+      <div class="social rounded-3xl transition-all duration-300 size-full">
         <span class="tip">{{ socialTip }}</span>
         <div class="link">
           <div class="p-4" v-for="(item, index) in socialLinks.socialLinks" :key="item.name" :href="item.url" :data-index="index" @click="onClickLinks" @mouseenter="socialTip = item.tip" @mouseleave="socialTip = '通过这里联系我吧'">
@@ -52,7 +52,7 @@ const socialTip = ref("通过这里联系我吧");
   width: 100%;
   height: 42px;
   background-color: transparent;
-  border-radius: 6px;
+  // border-radius: 6px;
   backdrop-filter: blur(0);
   animation: fade 0.5s;
   transition:
@@ -106,8 +106,8 @@ const socialTip = ref("通过这里联系我吧");
 
   @media (min-width: 768px) {
     &:hover {
-      background-color: #00000040;
-      backdrop-filter: blur(5px);
+      // background-color: #00000040;
+      // backdrop-filter: blur(5px);
 
       .tip {
         display: block;

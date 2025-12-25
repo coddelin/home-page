@@ -7,21 +7,17 @@
       <span class="title">网站列表</span>
     </div>
     <!--  网站列表 -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 md:grid-cols-3 gap-5 link-all overflow-auto mb-30">
-      <LiquidWeb
-        v-for="(item, index) in siteLinks"
-        :key="index"
-        class="rounded-3xl h-20"
-        :selector="div"
-        :options="{ scale: 22, blur: 2, saturation: 170, aberration: 550, mode: 'standard' }"
-      >
-        <div class="item" @click="jumpLink(item)">
-          <Icon size="26">
-            <component :is="siteIcon[item.icon]" />
-          </Icon>
-          <span class="name text-hidden">{{ item.name }}</span>
-        </div>
-      </LiquidWeb>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 md:grid-cols-2 gap-5 link-all overflow-y-auto mb-30 p-4">
+      <div v-for="(item, index) in siteLinks" :key="index" class="rounded-3xl h-15  cursor-pointer flex items-center justify-center border border-amber-100 hover:border-amber-100/40 transition-all duration-300">
+        <LiquidWeb  class="size-full" :options="GlassOptions">
+          <div class="item size-full rounded-3xl h-15" @click="jumpLink(item)">
+            <Icon size="26">
+              <component :is="siteIcon[item.icon]" />
+            </Icon>
+            <span class="name text-hidden">{{ item.name }}</span>
+          </div>
+        </LiquidWeb>
+      </div>
     </div>
   </div>
 </template>
@@ -116,10 +112,8 @@ onMounted(() => {
   }
 
   .link-all {
-    height: 520px;
 
     .item {
-      height: 50px;
       width: 100%;
       display: flex;
       align-items: center;
@@ -130,7 +124,7 @@ onMounted(() => {
 
       &:hover {
         transform: scale(1.02);
-        background: rgb(0 0 0 / 40%);
+        // background: rgb(0 0 0 / 40%);
         transition: 0.3s;
       }
 
@@ -145,27 +139,28 @@ onMounted(() => {
 
       @media (min-width: 720px) and (max-width: 820px) {
         .name {
-          display: none;
+          // display: none;
+          overflow: hidden;
         }
       }
 
       @media (max-width: 720px) {
-        height: 80px;
+        // height: 80px;
       }
 
       @media (max-width: 460px) {
         flex-direction: column;
-
+        gap: 4px ;
         .name {
           font-size: 1rem;
           margin-left: 0;
-          margin-top: 8px;
+          // margin-top: 8px;
         }
       }
     }
 
     @media (max-width: 720px) {
-      height: 520;
+      // height: 520;
     }
   }
 }

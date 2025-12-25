@@ -1,5 +1,5 @@
 <template>
-  <LiquidWeb :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }">
+  <LiquidWeb :options="GlassOptions">
     <div class="set" @mouseenter="closeShow = true" @mouseleave="closeShow = false" @click.stop>
       <transition name="el-fade-in-linear">
         <CloseOne class="close" theme="filled" size="28" fill="#ffffff60" v-show="closeShow" @click="store.setOpenState = false" />
