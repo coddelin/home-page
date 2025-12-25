@@ -1,20 +1,36 @@
 <template>
   <!-- 社交链接 -->
   <div class="top_right">
-    <div class="social">
-      <span class="tip">{{ socialTip }}</span>
-      <div class="link">
-        <a v-for="item in socialLinks.socialLinks" :key="item.name" :href="item.url" target="_blank" @mouseenter="socialTip = item.tip" @mouseleave="socialTip = '通过这里联系我吧'">
-          <img class="icon " :src="item.icon" height="24" />
-        </a>
+    <LiquidWeb :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }">
+      <div class="social">
+        <span class="tip">{{ socialTip }}</span>
+        <div class="link">
+          <div class="p-4" v-for="(item, index) in socialLinks.socialLinks" :key="item.name" :href="item.url" :data-index="index" @click="onClickLinks" @mouseenter="socialTip = item.tip" @mouseleave="socialTip = '通过这里联系我吧'">
+            <img class="icon " :src="item.icon" height="24" />
+          </div>
+        </div>
       </div>
-    </div>
+    </LiquidWeb>
   </div>
 </template>
 
 <script setup>
 import socialLinks from "@/assets/socialLinks.json";
-
+import { LiquidWeb } from "liquid-web/vue";
+import { mainStore } from "@/store";
+function onClickLinks(e) {
+  const url = e.currentTarget.getAttribute("href");
+  const data = e.currentTarget.dataset.index;
+  console.log(url, data);
+  if (url && data != 0) {
+    window.open(url, "_blank");
+  }else{
+    //显示qrcode
+    const store = mainStore();
+    store.isShowQrcode = true;
+    console.log("显示二维码");
+  }
+}
 // 社交链接提示
 const socialTip = ref("通过这里联系我吧");
 </script>
@@ -62,13 +78,14 @@ const socialTip = ref("通过这里联系我吧");
     align-items: center;
     justify-content: center;
 
-    a {
+    div {
       display: inherit;
 
       .icon {
-        margin: 0 12px;
+        // margin: 0 12px;
         width: 25px;
         transition: transform 0.3s;
+        filter: brightness(0) invert(1);
 
         &:hover {
           transform: scale(1.1);

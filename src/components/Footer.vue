@@ -1,5 +1,5 @@
 <template>
-  <footer id="footer" :class="store.footerBlur ? 'cards' : null">
+  <LiquidWeb v-if="store.footerBlur" :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }" selector="footer" :attributes="{ id: 'footer', class: '' }">
     <Transition name="fade" mode="out-in">
       <div v-if="!store.playerState || !store.playerLrcShow" class="power">
         <span>
@@ -30,9 +30,48 @@
       <div v-else class="lrc">
         <Transition name="fade" mode="out-in">
           <div class="lrc-all" :key="store.getPlayerLrc">
-            <music-one theme="filled" size="18" fill="#efefef" />
+            <MusicOne theme="filled" size="18" fill="#efefef" />
             <span class="lrc-text text-hidden" v-html="store.getPlayerLrc" />
-            <music-one theme="filled" size="18" fill="#efefef" />
+            <MusicOne theme="filled" size="18" fill="#efefef" />
+          </div>
+        </Transition>
+      </div>
+    </Transition>
+  </LiquidWeb>
+  <footer v-else id="footer">
+    <Transition name="fade" mode="out-in">
+      <div v-if="!store.playerState || !store.playerLrcShow" class="power">
+        <span>
+          <span :class="startYear < fullYear ? 'c-hidden' : 'hidden'">Copyright&nbsp;</span>
+          &copy;
+          <span v-if="startYear < fullYear" class="site-start">
+            {{ startYear }}
+            -
+          </span>
+          {{ fullYear }}
+          <a :href="siteUrl">{{ siteAuthor }}</a>
+        </span>
+        <!-- 以下信息请不要修改哦 -->
+        <span class="">
+          &amp;&nbsp;Made&nbsp;by
+          <a :href="config.github" target="_blank">
+            {{ config.author }}
+          </a>
+        </span>
+        <!-- 站点备案 -->
+        <span>
+          <a v-if="siteIcp" href="https://beian.miit.gov.cn" target="_blank">
+            &amp;
+            {{ siteIcp }}
+          </a>
+        </span>
+      </div>
+      <div v-else class="lrc">
+        <Transition name="fade" mode="out-in">
+          <div class="lrc-all" :key="store.getPlayerLrc">
+            <MusicOne theme="filled" size="18" fill="#efefef" />
+            <span class="lrc-text text-hidden" v-html="store.getPlayerLrc" />
+            <MusicOne theme="filled" size="18" fill="#efefef" />
           </div>
         </Transition>
       </div>
@@ -44,6 +83,7 @@
 import { MusicOne } from "@icon-park/vue-next";
 import { mainStore } from "@/store";
 import config from "@/../package.json";
+import { LiquidWeb } from "liquid-web/vue";
 
 const store = mainStore();
 const fullYear = new Date().getFullYear();

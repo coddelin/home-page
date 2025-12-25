@@ -8,21 +8,26 @@
         </span>
       </div>
       <!-- 简介 -->
-      <div :class="`${!store.mobileOpenState ? 'text-center w-full flex justify-center mt-0 mb-4 cards p-10' : 'hidden'} description`" @click="changeBox">
-        <div class="content">
-          <Icon size="16">
-            <QuoteLeft />
-          </Icon>
-          <Transition name="fade" mode="out-in">
-            <div :key="descriptionText.hello + descriptionText.text" class="text">
-              <p>{{ descriptionText.text }}</p>
-            </div>
-          </Transition>
-          <Icon size="16">
-            <QuoteRight />
-          </Icon>
+      <LiquidWeb
+        v-if="!store.mobileOpenState"
+        :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }"
+      >
+        <div class="text-center w-full flex justify-center mt-0 mb-4 p-10 description" @click="changeBox">
+          <div class="content">
+            <Icon size="16">
+              <QuoteLeft />
+            </Icon>
+            <Transition name="fade" mode="out-in">
+              <div :key="descriptionText.hello + descriptionText.text" class="text">
+                <p>{{ descriptionText.text }}</p>
+              </div>
+            </Transition>
+            <Icon size="16">
+              <QuoteRight />
+            </Icon>
+          </div>
         </div>
-      </div>
+      </LiquidWeb>
     </div>
     <!-- 功能区 -->
     <Func />
@@ -35,6 +40,7 @@
 import { mainStore } from "@/store";
 import Func from "@/views/Func/index.vue";
 import Link from "@/components/Links.vue";
+import { LiquidWeb } from "liquid-web/vue";
 const store = mainStore();
 
 // 站点链接

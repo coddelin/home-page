@@ -1,30 +1,34 @@
 <template>
-  <div
-    class="hitokoto cards"
+  <LiquidWeb
     v-show="!store.musicOpenState"
-    @mouseenter="openMusicShow = true"
-    @mouseleave="openMusicShow = false"
-    @click.stop
+    :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }"
   >
-    <!-- 打开音乐面板 -->
-    <Transition name="el-fade-in-linear">
-      <div
-        class="open-music"
-        v-show="openMusicShow && store.musicIsOk"
-        @click="store.musicOpenState = true"
-      >
-        <music-menu theme="filled" size="18" fill="#efefef" />
-        <span>打开音乐播放器</span>
-      </div>
-    </Transition>
-    <!-- 一言内容 -->
-    <Transition name="el-fade-in-linear" mode="out-in">
-      <div :key="hitokotoData.text" class="content" @click="updateHitokoto">
-        <span class="text">{{ hitokotoData.text }}</span>
-        <span class="from">-「&nbsp;{{ hitokotoData.from }}&nbsp;」</span>
-      </div>
-    </Transition>
-  </div>
+    <div
+      class="hitokoto"
+      @mouseenter="openMusicShow = true"
+      @mouseleave="openMusicShow = false"
+      @click.stop
+    >
+      <!-- 打开音乐面板 -->
+      <Transition name="el-fade-in-linear">
+        <div
+          class="open-music"
+          v-show="openMusicShow && store.musicIsOk"
+          @click="store.musicOpenState = true"
+        >
+          <MusicMenu theme="filled" size="18" fill="#efefef" />
+          <span>打开音乐播放器</span>
+        </div>
+      </Transition>
+      <!-- 一言内容 -->
+      <Transition name="el-fade-in-linear" mode="out-in">
+        <div :key="hitokotoData.text" class="content" @click="updateHitokoto">
+          <span class="text">{{ hitokotoData.text }}</span>
+          <span class="from">-「&nbsp;{{ hitokotoData.from }}&nbsp;」</span>
+        </div>
+      </Transition>
+    </div>
+  </LiquidWeb>
 </template>
 
 <script setup>
@@ -32,6 +36,7 @@ import { MusicMenu, Error } from "@icon-park/vue-next";
 import { getHitokoto } from "@/api";
 import { mainStore } from "@/store";
 import debounce from "@/utils/debounce.js";
+import { LiquidWeb } from "liquid-web/vue";
 
 const store = mainStore();
 

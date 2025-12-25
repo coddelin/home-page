@@ -1,31 +1,33 @@
 <template>
-  <div class="box cards" @mouseenter="closeShow = true" @mouseleave="closeShow = false">
-    <transition name="el-fade-in-linear">
-      <close-one
-        class="close"
-        theme="filled"
-        size="28"
-        fill="#ffffff60"
-        v-show="closeShow"
-        @click="store.boxOpenState = false"
-      />
-    </transition>
-    <transition name="el-fade-in-linear">
-      <setting-two
-        class="setting"
-        theme="filled"
-        size="28"
-        fill="#ffffff60"
-        v-show="closeShow"
-        @click="store.setOpenState = true"
-      />
-    </transition>
-    <div class="content">
-      <!-- 可在此处自定义任意内容 -->
-      <TimeCapsule />
-      <MoreContent />
+  <LiquidWeb :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }">
+    <div class="box" @mouseenter="closeShow = true" @mouseleave="closeShow = false">
+      <transition name="el-fade-in-linear">
+        <CloseOne
+          class="close"
+          theme="filled"
+          size="28"
+          fill="#ffffff60"
+          v-show="closeShow"
+          @click="store.boxOpenState = false"
+        />
+      </transition>
+      <transition name="el-fade-in-linear">
+        <SettingTwo
+          class="setting"
+          theme="filled"
+          size="28"
+          fill="#ffffff60"
+          v-show="closeShow"
+          @click="store.setOpenState = true"
+        />
+      </transition>
+      <div class="content">
+        <!-- 可在此处自定义任意内容 -->
+        <TimeCapsule />
+        <MoreContent />
+      </div>
     </div>
-  </div>
+  </LiquidWeb>
 </template>
 
 <script setup>
@@ -33,6 +35,7 @@ import { CloseOne, SettingTwo } from "@icon-park/vue-next";
 import { mainStore } from "@/store";
 import TimeCapsule from "@/components/TimeCapsule.vue";
 import MoreContent from "@/components/MoreContent.vue";
+import { LiquidWeb } from "liquid-web/vue";
 
 const store = mainStore();
 const closeShow = ref(false);

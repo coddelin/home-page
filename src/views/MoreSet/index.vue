@@ -1,8 +1,9 @@
 <template>
-  <div class="set cards" @mouseenter="closeShow = true" @mouseleave="closeShow = false" @click.stop>
-    <transition name="el-fade-in-linear">
-      <close-one class="close" theme="filled" size="28" fill="#ffffff60" v-show="closeShow" @click="store.setOpenState = false" />
-    </transition>
+  <LiquidWeb :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }">
+    <div class="set" @mouseenter="closeShow = true" @mouseleave="closeShow = false" @click.stop>
+      <transition name="el-fade-in-linear">
+        <CloseOne class="close" theme="filled" size="28" fill="#ffffff60" v-show="closeShow" @click="store.setOpenState = false" />
+      </transition>
     <el-row :gutter="40">
       <el-col :span="12" class="left">
         <div class="logo text-hidden">
@@ -13,7 +14,7 @@
         <div class="version">
           <div class="num">v&nbsp;{{ config.version }}</div>
           <el-tooltip content="Github 源代码仓库" placement="right" :show-arrow="false">
-            <github-one class="github" theme="outline" size="24" @click="jumpTo(config.github)" />
+            <GithubOne class="github" theme="outline" size="24" @click="jumpTo(config.github)" />
           </el-tooltip>
         </div>
         <el-card class="update">
@@ -24,11 +25,11 @@
           </template>
           <div class="upnote">
             <div v-for="item in upData.new" :key="item" class="uptext">
-              <add-one theme="outline" size="22" />
+              <AddOne theme="outline" size="22" />
               {{ item }}
             </div>
             <div v-for="item in upData.fix" :key="item" class="uptext">
-              <bug theme="outline" size="22" />
+              <Bug theme="outline" size="22" />
               {{ item }}
             </div>
           </div>
@@ -36,13 +37,14 @@
       </el-col>
       <el-col :span="12" class="right">
         <div class="title">
-          <setting-two theme="filled" size="28" fill="#ffffff60" />
+          <SettingTwo theme="filled" size="28" fill="#ffffff60" />
           <span class="name">全局设置</span>
         </div>
         <Set />
       </el-col>
     </el-row>
-  </div>
+    </div>
+  </LiquidWeb>
 </template>
 
 <script setup>
@@ -50,6 +52,7 @@ import { CloseOne, SettingTwo, GithubOne, AddOne, Bug } from "@icon-park/vue-nex
 import { mainStore } from "@/store";
 import Set from "@/components/Set.vue";
 import config from "@/../package.json";
+import { LiquidWeb } from "liquid-web/vue";
 
 const store = mainStore();
 const closeShow = ref(false);

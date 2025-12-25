@@ -8,12 +8,20 @@
     </div>
     <!--  网站列表 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 md:grid-cols-3 gap-5 link-all overflow-auto mb-30">
-      <div class="item cards" v-for="(item, index) in siteLinks" :key="index" @click="jumpLink(item)">
-        <Icon size="26">
-          <component :is="siteIcon[item.icon]" />
-        </Icon>
-        <span class="name text-hidden">{{ item.name }}</span>
-      </div>
+      <LiquidWeb
+        v-for="(item, index) in siteLinks"
+        :key="index"
+        class="rounded-3xl h-10"
+        :selector="div"
+        :options="{ scale: 22, blur: 2, saturation: 170, aberration: 550, mode: 'standard' }"
+      >
+        <div class="item" @click="jumpLink(item)">
+          <Icon size="26">
+            <component :is="siteIcon[item.icon]" />
+          </Icon>
+          <span class="name text-hidden">{{ item.name }}</span>
+        </div>
+      </LiquidWeb>
     </div>
   </div>
 </template>
@@ -24,6 +32,7 @@ import { Icon } from "@vicons/utils";
 import { Link, Blog, CompactDisc, Video, Compass, Book, Fire, LaptopCode } from "@vicons/fa"; // 注意使用正确的类别
 import { mainStore } from "@/store";
 import siteLinks from "@/assets/siteLinks.json";
+import { LiquidWeb } from "liquid-web/vue";
 
 const store = mainStore();
 
@@ -110,7 +119,7 @@ onMounted(() => {
     height: 520px;
 
     .item {
-      height: 100px;
+      height: 50px;
       width: 100%;
       display: flex;
       align-items: center;

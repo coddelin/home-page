@@ -9,20 +9,22 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <div class="right cards">
-          <div class="time">
-            <div class="date">
-              <span>{{ currentTime.year }}&nbsp;年&nbsp;</span>
-              <span>{{ currentTime.month }}&nbsp;月&nbsp;</span>
-              <span>{{ currentTime.day }}&nbsp;日&nbsp;</span>
-              <span class="sm-hidden">{{ currentTime.weekday }}</span>
+        <LiquidWeb :options="{ scale: 22, blur: 2, saturation: 170, aberration: 50, mode: 'standard' }">
+          <div class="right">
+            <div class="time">
+              <div class="date">
+                <span>{{ currentTime.year }}&nbsp;年&nbsp;</span>
+                <span>{{ currentTime.month }}&nbsp;月&nbsp;</span>
+                <span>{{ currentTime.day }}&nbsp;日&nbsp;</span>
+                <span class="sm-hidden">{{ currentTime.weekday }}</span>
+              </div>
+              <div class="text">
+                <span> {{ currentTime.hour }}:{{ currentTime.minute }}:{{ currentTime.second }}</span>
+              </div>
             </div>
-            <div class="text">
-              <span> {{ currentTime.hour }}:{{ currentTime.minute }}:{{ currentTime.second }}</span>
-            </div>
+            <Weather />
           </div>
-          <Weather />
-        </div>
+        </LiquidWeb>
       </el-col>
     </el-row>
   </div>
@@ -34,6 +36,7 @@ import { mainStore } from "@/store";
 import Music from "@/components/Music.vue";
 import Hitokoto from "@/components/Hitokoto.vue";
 import Weather from "@/components/Weather.vue";
+import { LiquidWeb } from "liquid-web/vue";
 
 const store = mainStore();
 
