@@ -5,34 +5,33 @@
   <Background @loadComplete="loadComplete" />
   <!-- 主界面 -->
   <Transition name="fade" mode="out-in">
-    <div v-if="store.imgLoadStatus">
-      <main id="main">
-        <SocialLinks />
-        <div class="flex justify-center">
-          <MainLeft />
-        </div>
-        <div class="flex justify-center" v-show="!store.backgroundShow">
-          <section class="flex justify-center" v-show="!store.setOpenState">
-            <div class="flex justify-center mt-30" v-show="!store.isShowQrcode">
-              <MainRight v-show="!store.boxOpenState" />
-            </div>
-            <MiniApp v-show="store.isShowQrcode" />
-            <Box v-show="store.boxOpenState" />
-          </section>
-          <section class="more" v-show="store.setOpenState" @click="store.setOpenState = false">
-            <MoreSet />
-          </section>
-        </div>
-        <!-- 移动端菜单按钮
+    <main id="main" v-if="store.imgLoadStatus">
+      <SocialLinks />
+      <div class="flex justify-center">
+        <MainLeft />
+      </div>
+      <div class="flex justify-center" v-show="!store.backgroundShow">
+        <section class="flex justify-center" v-show="!store.setOpenState">
+          <div class="flex justify-center mt-30" v-show="!store.isShowQrcode">
+            <MainRight v-show="!store.boxOpenState" />
+          </div>
+          <MiniApp v-show="store.isShowQrcode" />
+          <Box v-show="store.boxOpenState" />
+        </section>
+      </div>
+      <!-- 移动端菜单按钮
     <Icon class="menu" size="24" v-show="!store.backgroundShow" @click="store.mobileOpenState = !store.mobileOpenState">
       <component :is="store.mobileOpenState ? CloseSmall : HamburgerButton" />
     </Icon>-->
-      </main>
-      <!-- 页脚 -->
-      <Transition name="fade" mode="out-in">
-        <Footer class="f-ter" v-if="store.imgLoadStatus" v-show="!store.backgroundShow && !store.setOpenState" />
-      </Transition>
-    </div>
+    </main>
+  </Transition>
+  <!-- 设置页 -->
+  <section class="more" v-if="store.imgLoadStatus" v-show="store.setOpenState" @click="store.setOpenState = false">
+    <MoreSet />
+  </section>
+  <!-- 页脚 -->
+  <Transition name="fade" mode="out-in">
+    <Footer class="f-ter" v-if="store.imgLoadStatus" v-show="!store.backgroundShow && !store.setOpenState" />
   </Transition>
 </template>
 
@@ -124,6 +123,23 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
+.more {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  backdrop-filter: blur(20px);
+  z-index: 2;
+  animation: fade 0.5s;
+
+  @media (max-height: 720px) {
+    height: 721px;
+    width: calc(100% + 6px);
+  }
+}
+
 #main {
   position: absolute;
   top: 0;
@@ -148,18 +164,6 @@ onBeforeUnmount(() => {
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    .more {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #00000080;
-      backdrop-filter: blur(20px);
-      z-index: 2;
-      animation: fade 0.5s;
     }
 
     @media (max-width: 1200px) {
@@ -201,11 +205,6 @@ onBeforeUnmount(() => {
 
     .container {
       height: 721px;
-
-      .more {
-        height: 721px;
-        width: calc(100% + 6px);
-      }
 
       @media (min-width: 391px) {
         // w 1201px ~ max

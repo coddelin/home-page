@@ -1,9 +1,8 @@
 <template>
-  <LiquidWeb :options="GlassOptions">
-    <div class="set" @mouseenter="closeShow = true" @mouseleave="closeShow = false" @click.stop>
-      <transition name="el-fade-in-linear">
-        <CloseOne class="close" theme="filled" size="28" fill="#ffffff60" v-show="closeShow" @click="store.setOpenState = false" />
-      </transition>
+  <div class="set" @mouseenter="closeShow = true" @mouseleave="closeShow = false" @click.stop>
+    <transition name="el-fade-in-linear">
+      <CloseOne class="close" theme="filled" size="28" fill="#ffffff60" v-show="closeShow" @click="store.setOpenState = false" />
+    </transition>
     <el-row :gutter="40">
       <el-col :span="12" class="left">
         <div class="logo text-hidden">
@@ -43,8 +42,8 @@
         <Set />
       </el-col>
     </el-row>
-    </div>
-  </LiquidWeb>
+  </div>
+
 </template>
 
 <script setup>
@@ -52,10 +51,9 @@ import { CloseOne, SettingTwo, GithubOne, AddOne, Bug } from "@icon-park/vue-nex
 import { mainStore } from "@/store";
 import Set from "@/components/Set.vue";
 import config from "@/../package.json";
-import { LiquidWeb } from "liquid-web/vue";
-
 const store = mainStore();
 const closeShow = ref(false);
+
 
 // 站点链接
 const siteUrl = computed(() => {

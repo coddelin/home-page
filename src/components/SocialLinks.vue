@@ -18,6 +18,7 @@
 import socialLinks from "@/assets/socialLinks.json";
 import { LiquidWeb } from "liquid-web/vue";
 import { mainStore } from "@/store";
+import {GlassOptions} from "@/utils/constant.js";
 function onClickLinks(e) {
   const url = e.currentTarget.getAttribute("href");
   const data = e.currentTarget.dataset.index;

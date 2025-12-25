@@ -37,7 +37,7 @@ import Music from "@/components/Music.vue";
 import Hitokoto from "@/components/Hitokoto.vue";
 import Weather from "@/components/Weather.vue";
 import { LiquidWeb } from "liquid-web/vue";
-
+import {GlassOptions} from "@/utils/constant.js";
 const store = mainStore();
 
 // 当前时间

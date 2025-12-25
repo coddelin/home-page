@@ -36,7 +36,7 @@ import { mainStore } from "@/store";
 import TimeCapsule from "@/components/TimeCapsule.vue";
 import MoreContent from "@/components/MoreContent.vue";
 import { LiquidWeb } from "liquid-web/vue";
-
+import {GlassOptions} from "@/utils/constant.js";
 const store = mainStore();
 const closeShow = ref(false);
 </script>
