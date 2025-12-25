@@ -11,7 +11,7 @@
       <LiquidWeb
         v-for="(item, index) in siteLinks"
         :key="index"
-        class="rounded-3xl h-10"
+        class="rounded-3xl h-20"
         :selector="div"
         :options="{ scale: 22, blur: 2, saturation: 170, aberration: 550, mode: 'standard' }"
       >

@@ -1,7 +1,7 @@
 <template>
-  <div class="mini-app-overlay" @click="store.isShowQrcode = false">
+  <div class="mini-app-overlay" @click="handleClose">
     <div class="mini-app" @click.stop>
-      <button class="close-btn" @click="store.isShowQrcode = false">×</button>
+      <button class="close-btn" @click="handleClose">×</button>
       <img src="/images/icon/mini_app.jpg" alt="星海飞驰壁纸微信小程序">
       <p class="tip">扫码体验小程序</p>
     </div>
@@ -10,7 +10,19 @@
 
 <script setup>
 import { mainStore } from "@/store";
+import { useRouter } from "vue-router";
+
 const store = mainStore();
+const router = useRouter();
+
+// 关闭二维码弹窗
+const handleClose = () => {
+  store.isShowQrcode = false;
+  // 如果当前路由是 /qrcode，返回首页
+  if (router.currentRoute.value.path === '/qrcode') {
+    router.push('/');
+  }
+};
 </script>
 
 <style lang="scss" scoped>
