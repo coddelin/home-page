@@ -27,6 +27,8 @@ jobs:
         uses: actions/setup-node@v4.0.0
         with:
           node-version: "18.x"
+      - run: corepack enable
+      - run: corepack prepare pnpm@9 --activate
       # 复制环境变量文件
       - name: Copy .env.example
         run: |
