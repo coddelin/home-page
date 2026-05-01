@@ -6,8 +6,8 @@
   },
   {
     "icon": "Video",
-    "name": "视频素材",
-    "link": "https://v.codelin.vip/"
+    "name": "视频影视",
+    "link": "https://movie.okforks.com/"
   },
   {
     "icon": "Video",
@@ -22,7 +22,7 @@
   {
     "icon": "Book",
     "name": "Pytorch学习手册",
-    "link": "https://codelin.vip/"
+    "link": "https://pytorch-tutorial.web.app"
   },
   {
     "icon": "Book",
@@ -45,14 +45,9 @@
     "link": "https://immich-doc.web.app/"
   },
   {
-    "icon": "Book",
-    "name": "github项目搜索",
-    "link": "https://search.codelin.vip/"
-  },
-  {
     "icon": "Blog",
-    "name": "大众博客",
-    "link": "https://blog.codelin.vip"
+    "name": "tech博客",
+    "link": "https://tech-blogs.web.app/"
   },
   {
     "icon": "Blog",
